@@ -10,6 +10,7 @@ circle and rectangle classes.
 import unittest
 from unittests.rectangle_test import RectangleTest
 from unittests.circle_test import CircleTest
+from unittests.triangle_test import TriangleTest
 
 
 def main():
@@ -24,6 +25,7 @@ def main():
     test_suites = [
         test_loader.loadTestsFromTestCase(CircleTest),
         test_loader.loadTestsFromTestCase(RectangleTest),
+        test_loader.loadTestsFromTestCase(TriangleTest)
     ]
 
     # The runner is responsible for executing tests and printing output

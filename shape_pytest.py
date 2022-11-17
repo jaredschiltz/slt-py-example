@@ -6,9 +6,10 @@ File: shape_pytest.py
 Purpose: Simple pytest demonstration for the defined
 shape classes.
 """
-
+from math import pi
 from shapes.rectangle import Rectangle
 from shapes.circle import Circle
+from shapes.triangle import Triangle
 
 
 def test_rectangle():
@@ -45,3 +46,33 @@ def test_circle():
     assert radius8.perimeter() == 50.27
     assert radius5.diameter() == 10
     assert radius8.diameter() == 16
+
+def test_triangle():
+    """
+    Defines tests on some specific triangle objects.
+    """
+    right_triangle = Triangle(3, 4, pi/2)
+    right_and_isosceles_triangle = Triangle(4, 4, pi/2)
+    not_right_or_isosceles_triangle = Triangle(3, 4, pi/7)
+    isosceles_triangle = Triangle(2, 2, 60 * pi / 180)
+    
+    # Test areas, perimeters, and triangle type checks
+    assert right_triangle.area() == 6
+    assert right_and_isosceles_triangle.area() == 8.01
+    assert not_right_or_isosceles_triangle.area() == 2.61
+    assert isosceles_triangle.area() == 1.73
+
+    assert right_triangle.perimeter() == 12
+    assert right_and_isosceles_triangle.perimeter() == 13.66
+    assert not_right_or_isosceles_triangle.perimeter() == 8.84
+    assert isosceles_triangle.perimeter() == 6.0
+
+    assert right_triangle.is_right_triangle() == True
+    assert right_and_isosceles_triangle.is_right_triangle() == True
+    assert not_right_or_isosceles_triangle.is_right_triangle() == False
+    assert isosceles_triangle.is_right_triangle() == False
+
+    assert right_triangle.is_isosceles_triangle() == False
+    assert right_and_isosceles_triangle.is_isosceles_triangle() == True
+    assert not_right_or_isosceles_triangle.is_isosceles_triangle() == False
+    assert isosceles_triangle.is_isosceles_triangle() == True
