@@ -9,8 +9,10 @@ Purpose: Entrypoint for our simple application.
 import json
 import sys
 import yaml
+import os
 from shapes.rectangle import Rectangle
 from shapes.circle import Circle
+from shapes.triangle import Triangle
 
 
 def main(argv):
@@ -24,9 +26,10 @@ def main(argv):
     # Read the rectangles from JSON and circles from YAML
     rectangles = get_rectangles("inputs/rectangle.json")
     circles = get_circles("inputs/circle.yml")
+    triangles = get_triangles("inputs/triangle.json")
 
     # Combine both shape types into one list
-    general_shapes = rectangles + circles
+    general_shapes = rectangles + circles + triangles
 
     # Iterate over the shape list using a 'for' loop.
     # Print out the math data for each shape using
@@ -37,9 +40,12 @@ def main(argv):
         print(f" Perim: {general_shape.perimeter()} {units}\n")
 
     # Create a list of shapes as dictionaries and write as JSON
+    # Check and see if output directory exists. If not, create the directory
+    if (not os.path.exists("./outputs")):
+        os.mkdir("./outputs")
+
     with open("outputs/computations.json", "w") as handle:
         json.dump([gs.to_dict() for gs in general_shapes], handle, indent=4)
-
 
 def get_units(argv):
     """
@@ -114,6 +120,31 @@ def get_rectangles(filename):
     # Return the list of Rectangle objects
     return rectangle_objects
 
+def get_triangles(filename):
+    """
+    Read in from the JSON file supplied and create
+    a list of triangles based on the input data.
+    """
+    with open(filename, "r") as handle:
+        try:
+            data = json.load(handle)
+        except json.decoder.JSONDecodeError as error:
+            print(error)
+            raise
+
+    # Manually iterate over the JSON dictionaries in the list
+    # of triangles. Create a new triangle object for each one
+    # and add it to the list.
+    triangle_objects = []
+    for tri in data["triangle_list"]:
+        length_a = tri["length_a"]
+        length_b = tri["length_b"]
+        angle_ab = tri["angle_ab"]
+        new_triangle = Triangle(length_a, length_b, angle_ab)
+        triangle_objects.append(new_triangle)
+
+    # Return the list of triangle objects
+    return triangle_objects
 
 # If the main.py file was directly run from the shell, invoke
 # the main function.

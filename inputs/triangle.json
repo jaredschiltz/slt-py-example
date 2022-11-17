@@ -1,0 +1,24 @@
+{
+  "triangle_list": [
+    {
+      "length_a": 3,
+      "length_b": 4,
+      "angle_ab": 1.57
+    },
+    {
+      "length_a": 4,
+      "length_b": 4,
+      "angle_ab": 1.57
+    },
+    {
+      "length_a": 3,
+      "length_b": 4,
+      "angle_ab": 0.4488
+    },
+    {
+      "length_a": 2,
+      "length_b": 2,
+      "angle_ab": 1.047
+    }
+  ]
+}
