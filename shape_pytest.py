@@ -67,12 +67,12 @@ def test_triangle():
     assert not_right_or_isosceles_triangle.perimeter() == 8.84
     assert isosceles_triangle.perimeter() == 6.0
 
-    assert right_triangle.is_right_triangle() == True
-    assert right_and_isosceles_triangle.is_right_triangle() == True
-    assert not_right_or_isosceles_triangle.is_right_triangle() == False
-    assert isosceles_triangle.is_right_triangle() == False
+    assert right_triangle.is_right_triangle() 
+    assert right_and_isosceles_triangle.is_right_triangle()
+    assert not not_right_or_isosceles_triangle.is_right_triangle()
+    assert not isosceles_triangle.is_right_triangle()
 
-    assert right_triangle.is_isosceles_triangle() == False
-    assert right_and_isosceles_triangle.is_isosceles_triangle() == True
-    assert not_right_or_isosceles_triangle.is_isosceles_triangle() == False
-    assert isosceles_triangle.is_isosceles_triangle() == True
+    assert not right_triangle.is_isosceles_triangle()
+    assert right_and_isosceles_triangle.is_isosceles_triangle()
+    assert not not_right_or_isosceles_triangle.is_isosceles_triangle()
+    assert isosceles_triangle.is_isosceles_triangle()
